@@ -43,7 +43,7 @@ export default async function HomePage() {
           <input
             name="q"
             type="search"
-            placeholder="Tìm kiếm cầu thủ Việt Nam..."
+            placeholder="Tìm kiếm..."
             className="w-full rounded-full border pl-12 pr-6 py-3 shadow-lg focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-200"
           />
           <button
@@ -61,13 +61,6 @@ export default async function HomePage() {
           <div className="rounded-xl border bg-white p-8 text-center shadow-sm hover:shadow-md">
             <h3 className="mb-2 text-xl font-semibold">Danh sách cầu thủ</h3>
             <p className="text-gray-600">Tìm kiếm và xem hồ sơ cầu thủ Việt Nam</p>
-          </div>
-        </Link>
-        
-        <Link href="/players?position=Tiền đạo">
-          <div className="rounded-xl border bg-white p-8 text-center shadow-sm hover:shadow-md">
-            <h3 className="mb-2 text-xl font-semibold">Tiền đạo</h3>
-            <p className="text-gray-600">Các cầu thủ ghi bàn hàng đầu</p>
           </div>
         </Link>
         
