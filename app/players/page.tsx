@@ -54,12 +54,12 @@ export default async function PlayersPage({
       
       {/* Filters */}
       <div className="mb-6 flex flex-wrap gap-2">
-        <a 
+        <Link 
           href="/players" 
           className={`rounded-full px-4 py-2 ${!position ? 'bg-red-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}
         >
           Tất cả
-        </a>
+        </Link>
         {positions.map(pos => (
           <a 
             key={pos}
@@ -128,9 +128,9 @@ export default async function PlayersPage({
       {(!players || players.length === 0) && (
         <div className="py-12 text-center">
           <p className="text-gray-500">Không tìm thấy cầu thủ phù hợp</p>
-          <a href="/players" className="mt-2 inline-block text-red-600 hover:underline">
+          <Link href="/players" className="mt-2 inline-block text-red-600 hover:underline">
             Xem tất cả cầu thủ
-          </a>
+          </Link>
         </div>
       )}
     </div>
