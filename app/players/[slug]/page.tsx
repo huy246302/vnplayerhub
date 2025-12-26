@@ -24,7 +24,7 @@ interface Player {
   club_id: string | null
   created_at: string
   updated_at: string
-  clubs?: {
+  clubs: {
     name: string
     short_name: string | null
     logo_url: string | null
