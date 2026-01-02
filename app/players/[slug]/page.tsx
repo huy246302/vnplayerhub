@@ -34,17 +34,19 @@ interface Player {
 export default async function PlayerPage({
   params
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
+  const { slug } = await params
+
   const { data: player } = await supabase
     .from('players')
     .select(`
       *,
       clubs (name, short_name, logo_url)
     `)
-    .eq('slug', params.slug)
+    .eq('slug', slug)
     .single<Player>()
-  
+
   if (!player) {
     notFound()
   }

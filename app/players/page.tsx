@@ -52,7 +52,6 @@ export default async function PlayersPage({
     <div className="container mx-auto px-4 py-8">
       <h1 className="mb-6 text-3xl font-bold">Danh sách cầu thủ</h1>
       
-      {/* Filters */}
       <div className="mb-6 flex flex-wrap gap-2">
         <Link 
           href="/players" 
@@ -71,7 +70,6 @@ export default async function PlayersPage({
         ))}
       </div>
       
-      {/* Search */}
       {q && (
         <div className="mb-6">
           <p className="text-gray-600">
@@ -80,7 +78,6 @@ export default async function PlayersPage({
         </div>
       )}
       
-      {/* Players Grid */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {players?.map((player) => (
           <Link 

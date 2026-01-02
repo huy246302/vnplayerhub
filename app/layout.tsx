@@ -22,7 +22,7 @@ export default function RootLayout({
           {children}
         </main>
         <footer className="border-t bg-white py-8 text-center text-gray-600">
-          <p>© 2024 VNPlayerHub - Database cầu thủ Việt Nam</p>
+          <p>© 2026 VNPlayerHub - Database cầu thủ Việt Nam</p>
         </footer>
       </body>
     </html>
