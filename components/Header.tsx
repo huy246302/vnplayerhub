@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 
 export default async function Header() {
-  const { data: { user } } = await supabase.auth.getUser()
+  // const { data: { user } } = await supabase.auth.getUser()
 
   return (
     <header className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur">
@@ -25,7 +25,7 @@ export default async function Header() {
             </nav>
           </div>
           
-          <div className="flex items-center gap-4">
+          {/* <div className="flex items-center gap-4">
             {user ? (
               <div className="flex items-center gap-3">
                 <Link 
@@ -48,7 +48,7 @@ export default async function Header() {
                 Đăng nhập
               </Link>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </header>
