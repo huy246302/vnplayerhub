@@ -1,7 +1,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { Player } from '@/types/player'
 
-export function PlayerList({ players }: { players: any[] }) {
+type PlayerGridProps = {
+  players: Player[]
+}
+
+export function PlayerList({ players }: PlayerGridProps) {
   return (
     <div className="overflow-hidden rounded-xl border bg-white">
       <table className="w-full text-sm">

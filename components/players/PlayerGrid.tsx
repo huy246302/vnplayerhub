@@ -1,7 +1,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { Player } from '@/types/player'
 
-export function PlayerGrid({ players }: { players: any[] }) {
+type PlayerGridProps = {
+  players: Player[]
+}
+
+export function PlayerGrid({ players }: PlayerGridProps) {
   return (
     <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-4">
       {players.map(player => (
@@ -26,18 +31,24 @@ export function PlayerGrid({ players }: { players: any[] }) {
           </div>
 
           <h3 className="font-semibold">{player.full_name}</h3>
+
           {player.short_name && (
             <p className="text-sm text-gray-600">{player.short_name}</p>
           )}
 
-          <div className="mt-2 flex items-center justify-between text-sm">
-            <span className="rounded bg-red-100 px-2 py-0.5 text-red-600">
-              {player.position}
-            </span>
-            {player.club_jersey_number && (
-              <span className="text-gray-500">#{player.club_jersey_number}</span>
-            )}
-          </div>
+          {player.position && (
+            <div className="mt-2 flex items-center justify-between text-sm">
+              <span className="rounded bg-red-100 px-2 py-0.5 text-red-600">
+                {player.position}
+              </span>
+
+              {player.club_jersey_number && (
+                <span className="text-gray-500">
+                  #{player.club_jersey_number}
+                </span>
+              )}
+            </div>
+          )}
 
           {player.current_club && (
             <p className="mt-1 text-sm text-gray-500">
