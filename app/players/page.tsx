@@ -35,7 +35,7 @@ export default async function PlayersPage({
         Duyệt và khám phá hồ sơ cầu thủ Việt Nam
       </p>
 
-      <PlayersToolbar query={q} view={view} />
+      <PlayersToolbar view={view} />
 
       {players && players.length > 0 ? (
         view === 'grid' ? (

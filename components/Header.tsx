@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { supabase } from '@/lib/supabase'
 
 export default async function Header() {
   // const { data: { user } } = await supabase.auth.getUser()
@@ -24,31 +23,6 @@ export default async function Header() {
               </Link>
             </nav>
           </div>
-          
-          {/* <div className="flex items-center gap-4">
-            {user ? (
-              <div className="flex items-center gap-3">
-                <Link 
-                  href="/profile"
-                  className="text-sm hover:text-red-600"
-                >
-                  {user.email}
-                </Link>
-                <form action="/auth/signout" method="post">
-                  <button className="text-sm text-red-600 hover:text-red-700">
-                    Đăng xuất
-                  </button>
-                </form>
-              </div>
-            ) : (
-              <Link
-                href="/auth/signin"
-                className="rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700"
-              >
-                Đăng nhập
-              </Link>
-            )}
-          </div> */}
         </div>
       </div>
     </header>
