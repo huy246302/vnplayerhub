@@ -6,16 +6,16 @@ type Props = {
 }
 
 export function ClubList({ clubs }: Props) {
-  const rows: EntityTableRow[] = clubs.map(c => ({
-    id: c.id,
-    href: `/clubs/${c.id}`,
-    title: c.name,
-    imageUrl: c.logo_url,
+  const rows: EntityTableRow[] = clubs.map(clubs => ({
+    id: clubs.id,
+    href: `/clubs/${clubs.slug}`,
+    title: clubs.name,
+    imageUrl: clubs.logo_url ?? undefined,
     cols: [
-      c.short_name,
-      c.league,
-      c.stadium,
-      c.founded_year ? c.founded_year.toString() : null,
+      clubs.short_name,
+      clubs.league,
+      clubs.stadium,
+      clubs.founded_year ? clubs.founded_year.toString() : null,
     ],
   }))
 

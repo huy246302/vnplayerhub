@@ -29,8 +29,6 @@ export default async function ClubsPage({
   }
 
   const { data: clubs } = await query
-  
-  console.log(clubs)
 
   return (
     <div className="container mx-auto px-4 py-8">

@@ -8,11 +8,11 @@ type Props = {
 export function ClubGrid({ clubs }: Props) {
   const items: EntityGridItem[] = clubs.map(club => ({
     id: club.id,
-    href: `/clubs/${club.id}`,
+    href: `/clubs/${club.slug}`,
     title: club.name,
-    subtitle: club.short_name,
-    imageUrl: club.logo_url,
-    badge: club.league,
+    subtitle: club.short_name ?? undefined,
+    imageUrl: club.logo_url ?? undefined,
+    badge: club.league ?? undefined,
     meta: club.founded_year
       ? `Founded ${club.founded_year}`
       : undefined,

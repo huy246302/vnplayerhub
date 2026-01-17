@@ -36,8 +36,13 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 ```
+```
 vnplayerhub
 ├─ app
+│  ├─ clubs
+│  │  ├─ page.tsx
+│  │  └─ [id]
+│  │     └─ page.tsx
 │  ├─ globals.css
 │  ├─ layout.tsx
 │  ├─ page.tsx
@@ -46,7 +51,23 @@ vnplayerhub
 │     └─ [slug]
 │        └─ page.tsx
 ├─ components
-│  └─ Header.tsx
+│  ├─ clubs
+│  │  ├─ ClubGrid.tsx
+│  │  ├─ ClubList.tsx
+│  │  └─ ClubsToolbar.tsx
+│  ├─ Header.tsx
+│  ├─ home
+│  │  ├─ FeatureGrid.tsx
+│  │  ├─ Hero.tsx
+│  │  └─ Stats.tsx
+│  ├─ players
+│  │  ├─ PlayerGrid.tsx
+│  │  ├─ PlayerList.tsx
+│  │  └─ PlayersToolbar.tsx
+│  └─ ui
+│     ├─ EntityGrid.tsx
+│     ├─ EntityTable.tsx
+│     └─ EntityToolbar.tsx
 ├─ eslint.config.mjs
 ├─ lib
 │  └─ supabase.ts
@@ -61,6 +82,9 @@ vnplayerhub
 │  ├─ vercel.svg
 │  └─ window.svg
 ├─ README.md
-└─ tsconfig.json
+├─ tsconfig.json
+└─ types
+   ├─ club.ts
+   └─ player.ts
 
 ```
