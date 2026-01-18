@@ -9,7 +9,7 @@ interface Player {
   full_name: string
   short_name: string | null
   birth_date: string | null
-  nationality: string
+  nationality: string | null
   position: string
   height_cm: number | null
   preferred_foot: string | null
@@ -73,124 +73,97 @@ export default async function PlayerPage({
         </Link>
       </div>
       
-      <div className="rounded-xl border bg-white p-8 shadow-sm">
-        <div className="grid gap-8 lg:grid-cols-3">
-          {/* Left Column - Profile Image */}
-          <div>
-            <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-100">
-              {player.profile_image_url ? (
-                <Image 
-                  src={player.profile_image_url} 
-                  alt={player.full_name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  priority
-                />
-              ) : (
-                <div className="flex h-full items-center justify-center">
-                  <div className="text-8xl text-gray-300">⚽</div>
-                </div>
-              )}
+      <div className="space-y-8 rounded-xl bg-white p-8 shadow-sm">
+
+      <div className="flex items-start gap-6">
+        {/* Left Column - Profile Image */}
+        <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-full bg-gray-100">
+          {player.profile_image_url ? (
+            <Image
+              src={player.profile_image_url}
+              alt={player.full_name}
+              fill
+              className="object-cover"
+              priority
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center text-4xl">
+              ⚽
             </div>
+          )}
+        </div>
+        
+        {/* Right Column - Info */}
+        <div className="flex-1">
+          <div className="flex items-center gap-2">
+            <h1 className="text-xl font-semibold">{player.full_name}</h1>
+
+            {player.is_verified && (
+              <span className="rounded bg-red-100 px-2 py-0.5 text-xs text-red-600">
+                Verified
+              </span>
+            )}
           </div>
-          
-          {/* Right Column - Info */}
-          <div className="lg:col-span-2">
-            <div className="mb-6">
-              <h1 className="text-3xl font-bold">{player.full_name}</h1>
-              {player.short_name && (
-                <p className="text-xl text-gray-600">{player.short_name}</p>
-              )}
-              
-              {player.is_verified && (
-                <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-3 py-1 text-sm text-green-800">
-                  ✓ Đã xác minh
-                </span>
-              )}
-            </div>
-            
-            {/* Stats Grid */}
-            <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
-              <div className="rounded-lg border p-4">
-                <div className="text-sm text-gray-500">Vị trí</div>
-                <div className="text-lg font-semibold">{player.position}</div>
-              </div>
-              
-              {player.height_cm && (
-                <div className="rounded-lg border p-4">
-                  <div className="text-sm text-gray-500">Chiều cao</div>
-                  <div className="text-lg font-semibold">{player.height_cm} cm</div>
-                </div>
-              )}
-              
-              {player.preferred_foot && (
-                <div className="rounded-lg border p-4">
-                  <div className="text-sm text-gray-500">Chân thuận</div>
-                  <div className="text-lg font-semibold">
-                    {getPreferredFootText(player.preferred_foot)}
-                  </div>
-                </div>
-              )}
-              
-              {formattedBirthDate && (
-                <div className="rounded-lg border p-4">
-                  <div className="text-sm text-gray-500">Ngày sinh</div>
-                  <div className="text-lg font-semibold">{formattedBirthDate}</div>
-                </div>
-              )}
-            </div>
-            
-            {/* Club Info */}
-            {player.clubs && (
-              <div className="mb-6 rounded-lg border p-4">
-                <div className="mb-2 text-sm text-gray-500">Câu lạc bộ hiện tại</div>
-                <div className="flex items-center gap-3">
-                  {player.clubs.logo_url && (
-                    <div className="relative h-10 w-10">
-                      <Image 
-                        src={player.clubs.logo_url} 
-                        alt={player.clubs.name}
-                        fill
-                        className="object-contain"
-                        sizes="40px"
-                      />
-                    </div>
-                  )}
-                  <div>
-                    <div className="font-semibold">{player.clubs.name}</div>
-                    {player.club_jersey_number && (
-                      <div className="text-sm text-gray-600">Số áo: {player.club_jersey_number}</div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
-            
-            {/* Bio */}
-            {player.bio && (
-              <div className="mb-6">
-                <h3 className="mb-2 text-lg font-semibold">Tiểu sử</h3>
-                <p className="text-gray-700">{player.bio}</p>
-              </div>
-            )}
-            
-            {/* Career Highlights */}
-            {player.career_highlights && player.career_highlights.length > 0 && (
-              <div>
-                <h3 className="mb-3 text-lg font-semibold">Thành tích nổi bật</h3>
-                <ul className="space-y-2">
-                  {player.career_highlights.map((highlight: string, index: number) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <span className="mt-1 text-yellow-500">★</span>
-                      <span>{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+
+          <div className="mt-2 text-sm text-gray-600">
+            {player.position}
+            {player.club_jersey_number && ` • #${player.club_jersey_number}`}
+          </div>
+
+          {/* Meta row */}
+          <div className="mt-4 flex flex-wrap gap-6 text-sm text-gray-600">
+            {player.nationality && <span> {player.nationality}</span>}
+            {formattedBirthDate && <span> {formattedBirthDate}</span>}
+            {player.height_cm && <span> {player.height_cm} cm</span>}
+            {player.current_club && <span> {player.current_club}</span>}
           </div>
         </div>
+      </div>
+        {player.bio && (
+          <section>
+            <h2 className="mb-2 text-sm font-semibold uppercase text-gray-500">
+              About
+            </h2>
+            <p className="leading-relaxed text-gray-700">
+              {player.bio}
+            </p>
+          </section>
+        )}
+        <section>
+          <h2 className="mb-3 text-sm font-semibold uppercase text-gray-500">
+            Player Information
+          </h2>
+
+          <dl className="grid grid-cols-2 gap-y-4 text-sm">
+            <div>
+              <dt className="text-gray-500">Full name</dt>
+              <dd className="font-medium">{player.full_name}</dd>
+            </div>
+
+            {player.birth_date && (
+              <div>
+                <dt className="text-gray-500">Date of birth</dt>
+                <dd className="font-medium">{formattedBirthDate}</dd>
+              </div>
+            )}
+
+            {player.height_cm && (
+              <div>
+                <dt className="text-gray-500">Height</dt>
+                <dd className="font-medium">{player.height_cm} cm</dd>
+              </div>
+            )}
+
+            {player.preferred_foot && (
+              <div>
+                <dt className="text-gray-500">Preferred foot</dt>
+                <dd className="font-medium">
+                  {getPreferredFootText(player.preferred_foot)}
+                </dd>
+              </div>
+            )}
+          </dl>
+        </section>
       </div>
     </div>
   )
