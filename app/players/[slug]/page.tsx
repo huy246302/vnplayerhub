@@ -2,6 +2,16 @@ import { supabase } from '@/lib/supabase'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
+import {
+  ArrowLeft,
+  MapPin,
+  Calendar,
+  Ruler,
+  Shield,
+  BadgeCheck,
+  UserCircle,
+  Footprints,
+} from 'lucide-react'
 
 interface Player {
   id: string
@@ -68,8 +78,9 @@ export default async function PlayerPage({
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6">
-        <Link href="/players" className="text-red-600 hover:underline">
-          ← Quay lại danh sách
+        <Link href="/clubs" className="flex items-center gap-2 text-sm text-gray-600 hover:underline">
+          <ArrowLeft className="h-4 w-4" />
+          Quay lại câu lạc bộ
         </Link>
       </div>
       
@@ -87,8 +98,8 @@ export default async function PlayerPage({
               priority
             />
           ) : (
-            <div className="flex h-full items-center justify-center text-4xl">
-              ⚽
+            <div className="flex h-full items-center justify-center">
+              <UserCircle className="h-10 w-10 text-gray-300" />
             </div>
           )}
         </div>
@@ -99,7 +110,8 @@ export default async function PlayerPage({
             <h1 className="text-xl font-semibold">{player.full_name}</h1>
 
             {player.is_verified && (
-              <span className="rounded bg-red-100 px-2 py-0.5 text-xs text-red-600">
+              <span className="flex items-center gap-1 rounded bg-red-100 px-2 py-0.5 text-xs text-red-600">
+                <BadgeCheck className="h-3 w-3" />
                 Verified
               </span>
             )}
@@ -112,10 +124,33 @@ export default async function PlayerPage({
 
           {/* Meta row */}
           <div className="mt-4 flex flex-wrap gap-6 text-sm text-gray-600">
-            {player.nationality && <span> {player.nationality}</span>}
-            {formattedBirthDate && <span> {formattedBirthDate}</span>}
-            {player.height_cm && <span> {player.height_cm} cm</span>}
-            {player.current_club && <span> {player.current_club}</span>}
+            {player.nationality && (
+              <span className="flex items-center gap-2">
+                <MapPin className="h-4 w-4" />
+                {player.nationality}
+              </span>
+            )}
+
+            {formattedBirthDate && (
+              <span className="flex items-center gap-2">
+                <Calendar className="h-4 w-4" />
+                {formattedBirthDate}
+              </span>
+            )}
+
+            {player.height_cm && (
+              <span className="flex items-center gap-2">
+                <Ruler className="h-4 w-4" />
+                {player.height_cm} cm
+              </span>
+            )}
+
+            {player.current_club && (
+              <span className="flex items-center gap-2">
+                <Shield className="h-4 w-4" />
+                {player.current_club}
+              </span>
+            )}
           </div>
         </div>
       </div>
@@ -156,7 +191,10 @@ export default async function PlayerPage({
 
             {player.preferred_foot && (
               <div>
-                <dt className="text-gray-500">Preferred foot</dt>
+                <dt className="flex items-center gap-2 text-gray-500">
+                  <Footprints className="h-4 w-4" />
+                  Preferred foot
+                </dt>
                 <dd className="font-medium">
                   {getPreferredFootText(player.preferred_foot)}
                 </dd>
