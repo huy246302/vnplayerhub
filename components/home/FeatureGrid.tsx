@@ -30,10 +30,9 @@ export function FeatureGrid() {
         Explore Our Database
       </h2>
 
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2">
         <Explore title="Players" href="/players" />
         <Explore title="Clubs" href="/clubs" />
-        <Explore title="National Teams" href="/teams" />
       </div>
     </section>
   )
